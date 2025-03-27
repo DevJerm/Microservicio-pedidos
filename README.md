@@ -25,18 +25,11 @@ Este es nuestro trabajo de la primera entrega del micro servicio de pedidos. Uti
 
 ### GET
 
-- Obtener cliente por ID:
-  ```sh
-  curl -X GET http://localhost:8080/api/clientes/da5004fb-191c-4f75-88f2-e9ec77afa6f0
-  ```
-- Obtener pedido por ID:
-  ```sh
-  curl -X GET http://localhost:8080/api/pedidos/a0e3c6c5-e337-44cf-9266-973e74f0eaf8
-  ```
-- Obtener pedidos por estado:
-  ```sh
-  curl -X GET "http://localhost:8080/api/pedidos?estado=CREADO"
-  ```
+- Obtener cliente por ID: da5004fb-191c-4f75-88f2-e9ec77afa6f0
+
+- Obtener pedido por ID: a0e3c6c5-e337-44cf-9266-973e74f0eaf8
+
+- Obtener pedidos por estado: CREADO
 
 ### POST
 
