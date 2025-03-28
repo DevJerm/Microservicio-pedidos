@@ -33,7 +33,7 @@ Este es nuestro trabajo de la primera entrega del micro servicio de pedidos. Uti
 
 ### POST
 
-Los endpoints POST están documentados en Swagger. Puede consultarlos y probarlos en:
+Los endpoints POST están documentados en Swagger. 
 
 cualquier novedad quedamos super atentos y nos puede escribir via TEAMS, 
 
