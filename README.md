@@ -2,6 +2,9 @@
 
 Este es nuestro trabajo de la primera entrega del micro servicio de pedidos. Utilizamos .net core 8 y Mongo Atlas. Dejamos un dockerfile sencillo para que pueda probar el microservicio si lo desea. la db la tenemos full expuesta 0.0.0.0/0 \:v
 
+Diagrama UML
+![Diagrama de clases](Service-pedido.drawio.png)
+
 ## Cómo Ejecutar el Proyecto
 
 1. **Construir la imagen Docker**
