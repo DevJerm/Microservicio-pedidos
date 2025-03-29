@@ -2,24 +2,25 @@
 
 Este es nuestro trabajo de la primera entrega del micro servicio de pedidos. Utilizamos .net core 8 y Mongo Atlas. Dejamos un dockerfile sencillo para que pueda probar el microservicio si lo desea. la db la tenemos full expuesta 0.0.0.0/0 \:v
 
-Diagrama UML
+Esquema básico uml, sin agregar todas las clases 
 ![Diagrama de clases](Service-pedido.drawio.png)
 
 ## Cómo Ejecutar el Proyecto
 
-1. **Construir la imagen Docker**
+1. **ir o pararse en la ruta donde se encuentra en dockerfile**
+2. **Construir la imagen Docker**
 
    ```sh
    docker build -t pedidos-service .
    ```
 
-2. **Ejecutar el contenedor**
+3. **Ejecutar el contenedor**
 
    ```sh
    docker run -p 8080:8080 pedidos-service
    ```
 
-3. **Acceder a la API**
+4. **Acceder a la API**
 
    - ahora la API esta disponible en: `http://localhost:8080`
    - La documentación Swagger esta disponible en: `http://localhost:8080/swagger`
