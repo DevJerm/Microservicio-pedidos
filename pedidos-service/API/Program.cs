@@ -14,8 +14,7 @@ builder.WebHost.UseUrls("http://0.0.0.0:8080"); // Escuchar en todas las IP de l
 var mongoDbSettings = builder.Configuration.GetSection("MongoDBSettings");
 builder.Services.Configure<MongoDBSettings>(mongoDbSettings);
 var settings = mongoDbSettings.Get<MongoDBSettings>();
-Console.WriteLine($"ConnectionString: {settings?.ConnectionString ?? "null"}");
-Console.WriteLine($"DatabaseName: {settings?.DatabaseName ?? "null"}");
+
 // Configuración MongoDB
 builder.Services.Configure<MongoDBSettings>(
     builder.Configuration.GetSection("MongoDBSettings"));
