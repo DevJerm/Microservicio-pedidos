@@ -38,22 +38,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# Copiar archivos del proyecto y restaurar dependencias
-COPY *.csproj ./
-RUN dotnet restore
+# Copiamos el archivo .csproj y restauramos
+COPY pedidos-service.csproj .
+RUN dotnet restore pedidos-service.csproj
 
-# Copiar todo el código y compilar la aplicación
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Copiar el resto del código fuente
+COPY . .
+RUN dotnet publish pedidos-service.csproj -c Release -o out
 
 # Imagen base para ejecutar la API
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Exponer el puerto 8080 en el contenedor
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
-# Comando para ejecutar la API
 ENTRYPOINT ["dotnet", "pedidos-service.dll"]

@@ -1,5 +1,6 @@
 ﻿using Moq;
 using pedidos_service.Application.DTOs;
+using pedidos_service.Application.Interfaces;
 using pedidos_service.Application.Services;
 using pedidos_service.Domain.Entities;
 using pedidos_service.Domain.Repositories;
@@ -12,6 +13,7 @@ public class PedidoServiceTests
     private readonly Mock<IPedidoRepository> _pedidoRepositoryMock;
     private readonly Mock<IClienteRepository> _clienteRepositoryMock;
     private readonly Mock<ICreacionPedidoService> _creacionPedidoServiceMock;
+    private readonly Mock<IKafkaProducer> _kafkaProducerMock;
     private readonly PedidoService _pedidoService;
 
     public PedidoServiceTests()
@@ -19,11 +21,13 @@ public class PedidoServiceTests
         _pedidoRepositoryMock = new Mock<IPedidoRepository>();
         _clienteRepositoryMock = new Mock<IClienteRepository>();
         _creacionPedidoServiceMock = new Mock<ICreacionPedidoService>();
+        _kafkaProducerMock = new Mock<IKafkaProducer>();
 
         _pedidoService = new PedidoService(
             _pedidoRepositoryMock.Object,
             _clienteRepositoryMock.Object,
-            _creacionPedidoServiceMock.Object
+            _creacionPedidoServiceMock.Object,
+            _kafkaProducerMock.Object
         );
     }
 

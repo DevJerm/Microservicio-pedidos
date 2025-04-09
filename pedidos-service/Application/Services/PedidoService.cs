@@ -13,16 +13,19 @@ namespace pedidos_service.Application.Services
         private readonly IClienteRepository _clienteRepository;
         private readonly ICreacionPedidoService _creacionPedidoService;
 
+        private readonly IKafkaProducer _kafkaProducer;
         // utilizamos inversion de dependencias, para no depender de implementaciones sinoi de abstracciones. La inyeccion se hace en el startup 
         public PedidoService(
             IPedidoRepository pedidoRepository,
             IClienteRepository clienteRepository,
-            ICreacionPedidoService creacionPedidoService
+            ICreacionPedidoService creacionPedidoService,
+            IKafkaProducer kafkaProducer
             )
         {
             _pedidoRepository = pedidoRepository;
             _clienteRepository = clienteRepository;
             _creacionPedidoService = creacionPedidoService;
+            _kafkaProducer = kafkaProducer
             ;
         }
 
@@ -53,7 +56,7 @@ namespace pedidos_service.Application.Services
             // persistir el pedido
             await _pedidoRepository.AddAsync(pedido);
 
-           
+
             var pedidoCreado = new PedidoCreado
             {
                 PedidoId = pedido.Id,
@@ -65,6 +68,7 @@ namespace pedidos_service.Application.Services
                     Cantidad = i.Cantidad
                 }).ToList()
             };
+            await _kafkaProducer.PublishAsync("pedido-creado", pedidoCreado);
 
 
             return MapToDTO(pedido);
@@ -101,7 +105,7 @@ namespace pedidos_service.Application.Services
                 throw new KeyNotFoundException($"Pedido con ID {pedidoId} no encontrado");
 
             //utilizamos un enum para no sobre diseñar la solucion, de acuerdo a las recomendaciones tambien realizadas en clase de ing Software con el profe Jhonatan
-           
+
             switch (nuevoEstado.ToUpper())
             {
                 case "CONFIRMADO":
@@ -153,4 +157,4 @@ namespace pedidos_service.Application.Services
         }
     }
 }
-        
+

@@ -15,13 +15,14 @@ var mongoDbSettings = builder.Configuration.GetSection("MongoDBSettings");
 builder.Services.Configure<MongoDBSettings>(mongoDbSettings);
 var settings = mongoDbSettings.Get<MongoDBSettings>();
 
-// Configuración MongoDB
+// Configuraciï¿½n MongoDB
 builder.Services.Configure<MongoDBSettings>(
     builder.Configuration.GetSection("MongoDBSettings"));
 
 
 // inyeccion de dependencias
 builder.Services.AddSingleton<MongoDBContext>(); // Singleton para que solo haya una instancia de la conexion a la base de datos
+builder.Services.AddSingleton<IKafkaProducer, KafkaProducer>();
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<ICreacionPedidoService, CreacionPedidoService>();
