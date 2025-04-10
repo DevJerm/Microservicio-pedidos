@@ -10,7 +10,7 @@ namespace pedidos_service.Infraestructure.Persistence.Repositories
     {
         private readonly IMongoCollection<Pedido> _pedidos;
 
-        public PedidoRepository(MongoDBContext context)
+        public PedidoRepository(IMongoDBContext context)
         {
             _pedidos = context.Pedidos;
         }

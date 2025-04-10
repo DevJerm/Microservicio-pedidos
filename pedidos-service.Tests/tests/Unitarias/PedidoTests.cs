@@ -2,12 +2,12 @@
 using Xunit;
 using pedidos_service.Domain.Entities;
 using pedidos_service.Domain.ValueObjects;
+using pedidos_service.Application.DTOs;
 
 namespace pedidos_service.tests.Unitarias
 {
     public class PedidoTests
     {
-        //agg algunas pruebas unitarias de pedidos. Revisemos que mas podemos testear. Preguntar al profe si solo se requiren pruebas unitarias.
 
         private readonly DireccionEntrega _direccionPrueba = new DireccionEntrega(
             "Calle 33", "123", "medellin", "12345", "Cerca del parque");
@@ -71,5 +71,58 @@ namespace pedidos_service.tests.Unitarias
             pedido.MarcarEntregado();
             Assert.Equal(EstadoPedido.ENTREGADO, pedido.Estado);
         }
+
+        [Fact]
+        public void ConfirmarPedido_LanzaExcepcion_SiNoEstaEnCreado()
+        {
+            var pedido = new Pedido("cliente123", _direccionPrueba);
+            pedido.ConfirmarPedido(); // cambia a CONFIRMADO
+
+            var ex = Assert.Throws<InvalidOperationException>(() => pedido.ConfirmarPedido());
+            Assert.Contains("estado CREADO", ex.Message);
+        }
+
+        [Fact]
+        public void MarcarEnPreparacion_CambiaEstado_SiEstaConfirmado()
+        {
+            var pedido = new Pedido("cliente123", _direccionPrueba);
+            pedido.ConfirmarPedido();
+
+            pedido.MarcarEnPreparacion();
+
+            Assert.Equal(EstadoPedido.EN_PREPARACION, pedido.Estado);
+        }
+
+        [Fact]
+        public void MarcarListo_LanzaExcepcion_SiNoEstaEnPreparacion()
+        {
+            var pedido = new Pedido("cliente123", _direccionPrueba);
+            pedido.ConfirmarPedido(); // Estado: CONFIRMADO
+
+            var ex = Assert.Throws<InvalidOperationException>(() => pedido.MarcarListo());
+            Assert.Contains("EN_PREPARACION", ex.Message);
+        }
+
+        [Fact]
+        public void MarcarEntregado_LanzaExcepcion_SiNoEstaListo()
+        {
+            var pedido = new Pedido("cliente123", _direccionPrueba);
+            pedido.ConfirmarPedido();
+            pedido.MarcarEnPreparacion(); // Estado: EN_PREPARACION
+
+            var ex = Assert.Throws<InvalidOperationException>(() => pedido.MarcarEntregado());
+            Assert.Contains("LISTOS", ex.Message);
+        }
+
+        [Fact]
+        public void RecalcularTotal_ActualizaCorrectamenteConMultiplesItems()
+        {
+            var pedido = new Pedido("cliente456", _direccionPrueba);
+            pedido.AgregarItem("producto1", 3, 20);  // 60
+            pedido.AgregarItem("producto2", 2, 15);  // 30
+            pedido.AgregarItem("producto3", 1, 10);  // 10
+
+            Assert.Equal(100, pedido.Total.Valor);
+        }      
     }
 }

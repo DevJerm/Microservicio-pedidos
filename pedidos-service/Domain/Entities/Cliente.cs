@@ -18,17 +18,5 @@ namespace pedidos_service.Domain.Entities
             Telefono = telefono;
             DireccionPredeterminada = direccionPredeterminada;
         }
-
-        public void ActualizarInformacion(string nombre, string email, string telefono)
-        {
-            Nombre = nombre;
-            Email = email;
-            Telefono = telefono;
-        }
-
-        public void ActualizarDireccion(DireccionEntrega nuevaDireccion)
-        {
-            DireccionPredeterminada = nuevaDireccion;
-        }
     }
 }

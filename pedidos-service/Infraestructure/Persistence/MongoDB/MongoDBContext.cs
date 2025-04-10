@@ -5,7 +5,7 @@ using pedidos_service.Domain.Entities;
 
 namespace pedidos_service.Infraestructure.Persistence.MongoDB
 {
-    public class MongoDBContext
+    public class MongoDBContext : IMongoDBContext
     {
         private readonly IMongoDatabase _database;
 
@@ -15,12 +15,8 @@ namespace pedidos_service.Infraestructure.Persistence.MongoDB
             _database = client.GetDatabase(settings.Value.DatabaseName);
         }
 
-        //colecciones de la base de datos
-        public IMongoCollection<Pedido> Pedidos =>
-            _database.GetCollection<Pedido>("Pedidos");
-
-        public IMongoCollection<Cliente> Clientes =>
-            _database.GetCollection<Cliente>("Clientes");
+        public IMongoCollection<Pedido> Pedidos => _database.GetCollection<Pedido>("Pedidos");
+        public IMongoCollection<Cliente> Clientes => _database.GetCollection<Cliente>("Clientes");
     }
 
     public class MongoDBSettings

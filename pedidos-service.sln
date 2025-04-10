@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pedidos-service", "pedidos-service\pedidos-service.csproj", "{18DC12FC-552B-47C4-8A5E-B4B87A3621C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pedidos-service.Tests", "pedidos-service.Tests\pedidos-service.Tests.csproj", "{DD3AFC19-C771-44B1-8D12-71BB5EF97E43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{18DC12FC-552B-47C4-8A5E-B4B87A3621C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18DC12FC-552B-47C4-8A5E-B4B87A3621C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18DC12FC-552B-47C4-8A5E-B4B87A3621C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3AFC19-C771-44B1-8D12-71BB5EF97E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3AFC19-C771-44B1-8D12-71BB5EF97E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3AFC19-C771-44B1-8D12-71BB5EF97E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3AFC19-C771-44B1-8D12-71BB5EF97E43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

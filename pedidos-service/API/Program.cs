@@ -8,7 +8,6 @@ using pedidos_service.Infraestructure.Persistence.MongoDB;
 using pedidos_service.Infraestructure.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://0.0.0.0:8080"); // Escuchar en todas las IP de la maquibna, para no tener problema con mi docker local
 
 //utilizamos mongo porque solo va ser transaccional y no vamos a tener que generar consultar estructuradas, y por la facilidad que brinda mongo atlas 
 var mongoDbSettings = builder.Configuration.GetSection("MongoDBSettings");
@@ -21,7 +20,7 @@ builder.Services.Configure<MongoDBSettings>(
 
 
 // inyeccion de dependencias
-builder.Services.AddSingleton<MongoDBContext>(); // Singleton para que solo haya una instancia de la conexion a la base de datos
+builder.Services.AddSingleton<IMongoDBContext,MongoDBContext>(); // Singleton para que solo haya una instancia de la conexion a la base de datos
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<ICreacionPedidoService, CreacionPedidoService>();
