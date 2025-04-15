@@ -9,6 +9,11 @@ using pedidos_service.Infraestructure.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(8080); // Para que funcione en Docker sin problemas
+});
+
 //utilizamos mongo porque solo va ser transaccional y no vamos a tener que generar consultar estructuradas, y por la facilidad que brinda mongo atlas 
 var mongoDbSettings = builder.Configuration.GetSection("MongoDBSettings");
 builder.Services.Configure<MongoDBSettings>(mongoDbSettings);
@@ -35,7 +40,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Microservicio de Pedidos",
         Version = "v1",
-        Description = "API para gestionar el ciclo de vida de pedidos de restaurante"
+        Description = "Microservicio de pedidos Construccion de software"
     });
 });
 
