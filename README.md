@@ -14,7 +14,7 @@ Esquema básico uml, sin agregar todas las clases
    git clone https://github.com/DevJerm/Microservicio-pedidos.git
    ```
 
-2. **ir o pararse en la ruta donde se encuentra en docker-compose.yml **
+2. **ir o pararse en la ruta donde se encuentra en docker-compose.yml**
     ```sh
    cd ruta/docker-compose.yml
    ```
