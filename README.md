@@ -1,26 +1,49 @@
 # Hola profe,
 
-Este es nuestro trabajo de la primera entrega del micro servicio de pedidos. Utilizamos .net core 8 y Mongo Atlas. Dejamos un dockerfile sencillo para que pueda probar el microservicio si lo desea. la db la tenemos full expuesta 0.0.0.0/0 \:v
+Este es nuestro trabajo de la primera entrega del micro servicio de pedidos. 
+
+Tecnologías utilizadas: .net core 8 (C#) y Mongo Atlas. la db la tenemos full expuesta  0.0.0.0/0 \:v para que realice las pruebas respectivas.
 
 Esquema básico uml, sin agregar todas las clases 
 ![Diagrama de clases](Service-pedido.drawio.png)
 
-## Cómo Ejecutar el Proyecto
+## Cómo Ejecutar el Proyecto localmente
 
-1. **ir o pararse en la ruta donde se encuentra en dockerfile**
-2. **Construir la imagen Docker**
-
-   ```sh
-   docker build -t pedidos-service .
+1. **Clonar este repositorio**
+    ```sh
+   git clone https://github.com/DevJerm/Microservicio-pedidos.git
    ```
 
-3. **Ejecutar el contenedor**
+2. **ir o pararse en la ruta donde se encuentra en docker-compose.yml **
+    ```sh
+   cd ruta/docker-compose.yml
+   ```
+    
+3. **Construir la imagen Docker desde el docker compose**
 
    ```sh
-   docker run -p 8080:8080 pedidos-service
+   docker-compose build
+   ```
+   
+4. **Construir la imagen Docker desde el docker compose**
+
+   ```sh
+   docker-compose build
+   ```
+   
+5. **Inicia los contenedores construidos en el paso anterior**
+
+   ```sh
+   docker-compose up
    ```
 
-4. **Acceder a la API**
+   ** ¡¡Importante!! : Este despliegue esta preparado para salir por el puerto 8080. Si se desea modificar el puerto, se debe cambiar el docker-compose.yml y colocar el puerto deseado, y tambien en el program.cs 
+   builder.WebHost.ConfigureKestrel(serverOptions =>
+   {
+       serverOptions.ListenAnyIP(8080); <--- Colocar el puerto deseado
+   });
+
+6. **Acceder a la API**
 
    - ahora la API esta disponible en: `http://localhost:8080`
    - La documentación Swagger esta disponible en: `http://localhost:8080/swagger`
@@ -39,10 +62,13 @@ Esquema básico uml, sin agregar todas las clases
 
 Los endpoints POST están documentados en Swagger. 
 
+Evidencias del coverage 
+
+![Cobertura de pruebas unitarias](Coverage_micro_pedidos.png)
+
 cualquier novedad quedamos super atentos y nos puede escribir via TEAMS, 
 
 Saludos!!
-
 
 
 John Estiven Restrepo Marin 
