@@ -31,12 +31,15 @@ Esquema básico uml, sin agregar todas las clases
    docker-compose up
    ```
 
-   **¡¡Importante!!** : Este despliegue esta preparado para salir por el puerto 8080. Si se desea modificar el puerto, se debe cambiar el docker-compose.yml y colocar el puerto deseado, y tambien en el program.cs
+    **¡¡Importante!!** : Este despliegue esta preparado para salir por el puerto 8080 desde el contenedor. Si se desea modificar el puerto, se debe cambiar el docker-compose.yml y colocar el puerto deseado, y tambien en el program.cs
    
    builder.WebHost.ConfigureKestrel(serverOptions =>
    {
        serverOptions.ListenAnyIP(8080); <--- Colocar el puerto deseado
    });
+
+El puerto local lo puede cambiar sin problema
+[puerto_local]:[puerto_contenedor]
 
 6. **Acceder a la API**
 
