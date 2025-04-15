@@ -25,13 +25,7 @@ Esquema básico uml, sin agregar todas las clases
    docker-compose build
    ```
    
-4. **Construir la imagen Docker desde el docker compose**
-
-   ```sh
-   docker-compose build
-   ```
-   
-5. **Inicia los contenedores construidos en el paso anterior**
+4. **Inicia los contenedores construidos en el paso anterior**
 
    ```sh
    docker-compose up
@@ -43,7 +37,7 @@ Esquema básico uml, sin agregar todas las clases
        serverOptions.ListenAnyIP(8080); <--- Colocar el puerto deseado
    });
 
-6. **Acceder a la API**
+5. **Acceder a la API**
 
    - ahora la API esta disponible en: `http://localhost:8080`
    - La documentación Swagger esta disponible en: `http://localhost:8080/swagger`
