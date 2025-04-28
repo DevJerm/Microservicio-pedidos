@@ -3,7 +3,7 @@ name: Deploy .NET Core App with Docker to Azure VM
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
